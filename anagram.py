@@ -1,19 +1,21 @@
 def find_anagrams(word, candidates):
-    selected = []
-    for candidate in candidates:
-        if candidate == word:
-            break
+    # working only with lower letters:
+    word = word.lower()
+
+    # creating a list in wich recording anagrams
+    anagrams = []
+
+    # trasforing  the word in a list of alphabetical ordered letters
+    ordered_word = sorted(word)
 
     for candidate in candidates:
-        if ordered_letters(candidate) == ordered_letters(word):
-            selected.append(candidate)
 
-    return selected
+        # trasforing "candidate" in a list of alphabetical ordered lower letters
+        sorted_candidate = sorted(candidate.lower())
 
+        # if the word is not the candidate i check the lists
+        if candidate.lower() != word:
+            if sorted_candidate == ordered_word:
+                anagrams.append(candidate)
 
-def ordered_letters(word):
-    new_word = ""
-    for letter in set(word):
-        new_word += letter * word.count(letter)
-
-    return new_word.lower()
+    return anagrams
